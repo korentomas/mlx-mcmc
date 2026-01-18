@@ -8,9 +8,9 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mlx-mcmc",
-    version="0.1.0-alpha",
-    author="Claude Code Community",
-    author_email="noreply@anthropic.com",
+    version="0.1.0a0",
+    author="Tomas Korenblit",
+    author_email="tomaskorenblit@gmail.com",
     description="Bayesian inference for Apple Silicon using MLX",
     long_description=long_description,
     long_description_content_type="text/markdown",
