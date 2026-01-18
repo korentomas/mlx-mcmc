@@ -29,6 +29,7 @@ from mlx_mcmc.distributions.exponential import Exponential
 from mlx_mcmc.distributions.categorical import Categorical
 from mlx_mcmc.kernels.metropolis import metropolis_hastings
 from mlx_mcmc.kernels.hmc import hmc
+from mlx_mcmc.kernels.nuts import nuts
 from mlx_mcmc.inference.mcmc import MCMC
 
 __all__ = [
@@ -40,5 +41,6 @@ __all__ = [
     "Categorical",
     "metropolis_hastings",
     "hmc",
+    "nuts",
     "MCMC",
 ]

@@ -25,14 +25,15 @@ MLX-MCMC addresses this gap by providing a native Apple Silicon solution with Me
 - Core distributions (Normal, HalfNormal, Beta, Gamma, Exponential, Categorical)
 - Metropolis-Hastings sampler
 - Hamiltonian Monte Carlo (HMC) with automatic differentiation
-- Step size adaptation
+- **No-U-Turn Sampler (NUTS)** - adaptive HMC with automatic trajectory length
+- Step size adaptation via dual averaging
 - Basic diagnostics
 - Proof-of-concept validated
 
 **In Development:**
 - Multiple chain support
-- NUTS sampler
 - Comprehensive diagnostics (R-hat, ESS)
+- ArviZ integration
 
 ## Installation
 
@@ -143,6 +144,7 @@ See `examples/` directory:
 - `03_ab_testing.py` - Bayesian A/B testing with Beta distribution
 - `04_event_rates.py` - Event rate modeling with Gamma and Exponential distributions
 - `05_categorical_model.py` - Categorical outcomes with Dirichlet prior
+- `06_nuts_comparison.py` - **NUTS vs HMC**: automatic trajectory length tuning
 
 ## Testing
 
@@ -157,12 +159,12 @@ python benchmarks/compare_frameworks.py
 ## Contributing
 
 Contributions are welcome. Priority areas:
-1. NUTS sampler implementation
-2. Multiple chain support
-3. Comprehensive diagnostics (R-hat, ESS)
-4. ArviZ integration
-5. More distributions (Poisson, Binomial, Student-t, etc.)
-6. Performance optimizations
+1. Multiple chain support with parallel execution
+2. Comprehensive diagnostics (R-hat, ESS via FFT)
+3. ArviZ integration for visualization
+4. More distributions (Poisson, Binomial, Student-t, Dirichlet, etc.)
+5. Mass matrix adaptation for HMC/NUTS
+6. Performance optimizations and GPU benchmarks
 
 ## Documentation
 
@@ -201,22 +203,24 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [x] Core distribution infrastructure
 - [x] Metropolis-Hastings sampler
 - [x] Hamiltonian Monte Carlo (HMC)
+- [x] No-U-Turn Sampler (NUTS)
 - [x] More distributions (Beta, Gamma, Exponential, Categorical)
 - [x] Package structure
 - [x] Unit tests
 - [x] Example scripts
 
 ### Version 0.2 (Next - Multiple Chains & Diagnostics)
-- [ ] Multiple chain support
-- [ ] Basic diagnostics (R-hat, ESS)
+- [ ] Multiple chain support with parallel execution
+- [ ] R-hat convergence diagnostic
+- [ ] Effective Sample Size (ESS via FFT)
 - [ ] Posterior predictive checks
 - [ ] ArviZ integration
 
-### Version 0.3 (Future - NUTS)
-- [ ] No-U-Turn Sampler
-- [ ] Step size adaptation
+### Version 0.3 (Future - Advanced Features)
 - [ ] Mass matrix adaptation
-- [ ] ArviZ integration
+- [ ] Variational inference (ADVI)
+- [ ] More distributions (Poisson, Binomial, Student-t, Dirichlet)
+- [ ] Performance optimizations
 
 ### Version 1.0 (Production)
 - [ ] Complete distribution library

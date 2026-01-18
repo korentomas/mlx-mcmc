@@ -4,6 +4,7 @@ import numpy as np
 import mlx.core as mx
 from mlx_mcmc.kernels.metropolis import metropolis_hastings
 from mlx_mcmc.kernels.hmc import hmc
+from mlx_mcmc.kernels.nuts import nuts
 
 
 class MCMC:
@@ -67,6 +68,7 @@ class MCMC:
         **kwargs
             Additional arguments passed to the sampler:
             - For HMC: step_size, num_leapfrog_steps, adapt_step_size, target_accept
+            - For NUTS: step_size, max_tree_depth, adapt_step_size, target_accept
 
         Returns
         -------
@@ -77,8 +79,6 @@ class MCMC:
         ------
         ValueError
             If unknown sampling method specified
-        NotImplementedError
-            If NUTS requested (not yet implemented)
         """
         if method == 'hmc':
             # HMC has built-in warmup and sampling
@@ -106,10 +106,34 @@ class MCMC:
 
             return self.samples
 
+        elif method == 'nuts':
+            # NUTS has built-in warmup and sampling
+            if verbose:
+                print(f"\n{'='*70}")
+                print(f"MLX-MCMC: NUTS Sampling")
+                print(f"{'='*70}\n")
+
+            samples, accept_rate = nuts(
+                self.log_prob_fn,
+                initial_params,
+                num_samples=num_samples,
+                num_warmup=num_warmup,
+                key=mx.random.key(random_seed),
+                **kwargs
+            )
+
+            self.samples = {k: np.array(v) for k, v in samples.items()}
+            self.acceptance_rate = accept_rate
+
+            if verbose:
+                print(f"\n{'='*70}")
+                print("Sampling complete!")
+                print(f"{'='*70}\n")
+
+            return self.samples
+
         elif method == 'metropolis':
             sampler = metropolis_hastings
-        elif method == 'nuts':
-            raise NotImplementedError("NUTS not yet implemented. Coming soon!")
         else:
             raise ValueError(f"Unknown sampling method: {method}")
 
