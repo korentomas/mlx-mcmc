@@ -53,10 +53,10 @@ viz = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/mlx-mcmc"
-Repository = "https://github.com/yourusername/mlx-mcmc"
-Issues = "https://github.com/yourusername/mlx-mcmc/issues"
-Documentation = "https://github.com/yourusername/mlx-mcmc#readme"
+Homepage = "https://github.com/korentomas/mlx-mcmc"
+Repository = "https://github.com/korentomas/mlx-mcmc"
+Issues = "https://github.com/korentomas/mlx-mcmc/issues"
+Documentation = "https://github.com/korentomas/mlx-mcmc#readme"
 
 [tool.setuptools]
 packages = ["mlx_mcmc", "mlx_mcmc.distributions", "mlx_mcmc.kernels", "mlx_mcmc.inference"]

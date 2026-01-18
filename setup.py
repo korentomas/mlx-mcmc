@@ -14,7 +14,7 @@ setup(
     description="Bayesian inference for Apple Silicon using MLX",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/mlx-mcmc",
+    url="https://github.com/korentomas/mlx-mcmc",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -47,7 +47,7 @@ setup(
     },
     keywords="bayesian inference mcmc apple-silicon mlx probabilistic-programming",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/mlx-mcmc/issues",
-        "Source": "https://github.com/yourusername/mlx-mcmc",
+        "Bug Reports": "https://github.com/korentomas/mlx-mcmc/issues",
+        "Source": "https://github.com/korentomas/mlx-mcmc",
     },
 )
