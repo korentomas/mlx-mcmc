@@ -23,6 +23,10 @@ __license__ = "MIT"
 # Import core components
 from mlx_mcmc.distributions.normal import Normal
 from mlx_mcmc.distributions.halfnormal import HalfNormal
+from mlx_mcmc.distributions.beta import Beta
+from mlx_mcmc.distributions.gamma import Gamma
+from mlx_mcmc.distributions.exponential import Exponential
+from mlx_mcmc.distributions.categorical import Categorical
 from mlx_mcmc.kernels.metropolis import metropolis_hastings
 from mlx_mcmc.kernels.hmc import hmc
 from mlx_mcmc.inference.mcmc import MCMC
@@ -30,6 +34,10 @@ from mlx_mcmc.inference.mcmc import MCMC
 __all__ = [
     "Normal",
     "HalfNormal",
+    "Beta",
+    "Gamma",
+    "Exponential",
+    "Categorical",
     "metropolis_hastings",
     "hmc",
     "MCMC",

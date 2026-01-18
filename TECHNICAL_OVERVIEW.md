@@ -54,6 +54,10 @@ mlx_mcmc/
 │   ├── base.py        # Abstract base class
 │   ├── normal.py      # Gaussian distribution
 │   ├── halfnormal.py  # Half-normal (constrained positive)
+│   ├── beta.py        # Beta distribution (probabilities, proportions)
+│   ├── gamma.py       # Gamma distribution (positive reals, rates)
+│   ├── exponential.py # Exponential distribution (waiting times)
+│   ├── categorical.py # Categorical distribution (discrete choices)
 │   └── ...            # Additional distributions
 ├── kernels/           # MCMC sampling algorithms
 │   ├── metropolis.py  # Metropolis-Hastings (random walk)
@@ -90,6 +94,49 @@ class Normal(Distribution):
 - Unified memory: No data transfer overhead
 - Metal GPU: Automatic parallelization
 - JIT compilation: Fast after first call
+
+#### Implemented Distributions
+
+**Normal(mu, sigma)**: Gaussian distribution
+- Support: (-∞, ∞)
+- Use cases: General continuous variables, measurement errors
+- Mean: μ, Variance: σ²
+
+**HalfNormal(sigma)**: Positive-only normal distribution
+- Support: [0, ∞)
+- Use cases: Standard deviations, scale parameters
+- Mean: σ√(2/π), Variance: σ²(1 - 2/π)
+
+**Beta(alpha, beta)**: Distribution on unit interval
+- Support: (0, 1)
+- Use cases: Probabilities, proportions, conversion rates
+- Mean: α/(α+β), Variance: αβ/((α+β)²(α+β+1))
+- Special case: Beta(1, 1) = Uniform(0, 1)
+
+**Gamma(alpha, beta)**: Distribution for positive reals
+- Support: (0, ∞)
+- Parameterization: Shape-rate (alpha, beta)
+- Use cases: Event rates, waiting times, positive scales
+- Mean: α/β, Variance: α/β²
+- Note: Uses scipy.special.gammaln for numerical stability
+
+**Exponential(rate)**: Memoryless waiting time distribution
+- Support: [0, ∞)
+- Use cases: Time between events, decay processes
+- Mean: 1/λ, Variance: 1/λ²
+- Special case: Exponential(λ) = Gamma(1, λ)
+
+**Categorical(probs)**: Discrete distribution over categories
+- Support: {0, 1, ..., K-1} for K categories
+- Use cases: Classification, discrete choices, multinomial outcomes
+- Can be initialized with probs or logits
+- Mode: argmax(probs)
+
+**Implementation Notes**:
+- MLX lacks native gamma and beta sampling functions
+- Solution: Use numpy for sampling, convert to MLX arrays
+- Log probability computations use MLX for GPU acceleration
+- Numerically stable implementations using log-space arithmetic
 
 ### 2. MCMC Kernels
 

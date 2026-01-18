@@ -22,7 +22,7 @@ MLX-MCMC addresses this gap by providing a native Apple Silicon solution with Me
 **Current Version:** 0.1.0-alpha (Proof of Concept)
 
 **Implemented:**
-- Core distributions (Normal, HalfNormal)
+- Core distributions (Normal, HalfNormal, Beta, Gamma, Exponential, Categorical)
 - Metropolis-Hastings sampler
 - Hamiltonian Monte Carlo (HMC) with automatic differentiation
 - Step size adaptation
@@ -30,7 +30,6 @@ MLX-MCMC addresses this gap by providing a native Apple Silicon solution with Me
 - Proof-of-concept validated
 
 **In Development:**
-- More distributions (Beta, Gamma, Exponential, Categorical)
 - Multiple chain support
 - NUTS sampler
 - Comprehensive diagnostics (R-hat, ESS)
@@ -139,8 +138,11 @@ mlx-mcmc/
 ## Examples
 
 See `examples/` directory:
-- `01_simple_normal.py` - Basic inference
-- `02_hmc_comparison.py` - Metropolis-Hastings vs HMC
+- `01_simple_normal.py` - Basic inference with Normal distribution
+- `02_hmc_comparison.py` - Metropolis-Hastings vs HMC comparison
+- `03_ab_testing.py` - Bayesian A/B testing with Beta distribution
+- `04_event_rates.py` - Event rate modeling with Gamma and Exponential distributions
+- `05_categorical_model.py` - Categorical outcomes with Dirichlet prior
 
 ## Testing
 
@@ -155,11 +157,12 @@ python benchmarks/compare_frameworks.py
 ## Contributing
 
 Contributions are welcome. Priority areas:
-1. More distributions (Beta, Gamma, Exponential, Categorical)
-2. NUTS sampler
+1. NUTS sampler implementation
+2. Multiple chain support
 3. Comprehensive diagnostics (R-hat, ESS)
 4. ArviZ integration
-5. Documentation and examples
+5. More distributions (Poisson, Binomial, Student-t, etc.)
+6. Performance optimizations
 
 ## Documentation
 
@@ -197,15 +200,17 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ### Version 0.1 (Current - Proof of Concept)
 - [x] Core distribution infrastructure
 - [x] Metropolis-Hastings sampler
-- [x] Basic example
-- [ ] Package structure
-- [ ] Unit tests
+- [x] Hamiltonian Monte Carlo (HMC)
+- [x] More distributions (Beta, Gamma, Exponential, Categorical)
+- [x] Package structure
+- [x] Unit tests
+- [x] Example scripts
 
-### Version 0.2 (Next - HMC)
-- [ ] Hamiltonian Monte Carlo
-- [ ] More distributions (Beta, Gamma, Exponential)
+### Version 0.2 (Next - Multiple Chains & Diagnostics)
 - [ ] Multiple chain support
 - [ ] Basic diagnostics (R-hat, ESS)
+- [ ] Posterior predictive checks
+- [ ] ArviZ integration
 
 ### Version 0.3 (Future - NUTS)
 - [ ] No-U-Turn Sampler
